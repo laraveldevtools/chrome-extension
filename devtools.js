@@ -1,9 +1,9 @@
 
 chrome.devtools.panels.create(
-  "Database",
+  "Laravel",
   "", // No icon
   "panel.html",
   function(panel) {
-    console.log("PHP Console panel created!");
+    console.log("Laravel Database Tools panel created!");
   }
 );
