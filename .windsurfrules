@@ -1,5 +1,7 @@
-This is a local chrome extension to add a PHP console to your DevTools.
+This is a local chrome extension to add a Laravel console to your DevTools.
 
-This extension is utilizing the web tinker package by spatie: https://github.com/spatie/laravel-web-tinker.
+In this extension it will iframe the /devtools route of the current application into the panel. Here's the URL for this devtools package: https://github.com/laraveldevtools/laraveldevtools.
 
-What it does, is it basically iframes the /tinker route into the extension.
+This will load a database tab by default that will allow the user to edit data from their database right in the panel. Users can also click on the run code tab and it will open the /tinker route in the panel. This is using the Spatie web tinker package here: https://github.com/spatie/laravel-web-tinker.
+
+In addition to all those, users can also right click on any element and click the Edit Code button, this will then open the current file in VS Code. What it does is it utilizes the VS code extension package that will add a `data-view` attribute to every root level page with a reference to which view it is from.
