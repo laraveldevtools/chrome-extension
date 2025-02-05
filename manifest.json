@@ -1,26 +1,25 @@
 {
-  "name": "Laravel DevTools",
-  "version": "1.0",
-  "manifest_version": 3,
-  "description": "A DevTools extension to iframe the Laravel DevTools local URL.",
-  "devtools_page": "devtools.html",
-  "permissions": [
-    "tabs",
-    "contextMenus",
-    "scripting",
-    "activeTab"
-  ],
-  "icons": {
-    "128": "image.png"
-  },
-  "background": {
-    "service_worker": "background.js"
-  },
-  "content_scripts": [
-    {
-      "matches": ["<all_urls>"],
-      "js": ["contentScript.js"],
-      "run_at": "document_end"
-    }
-  ]
+    "name": "Laravel DevTools",
+    "version": "1.0",
+    "manifest_version": 3,
+    "description": "A DevTools extension to iframe the Laravel DevTools local URL.",
+    "devtools_page": "devtools.html",
+    "permissions": [
+        "tabs",
+        "contextMenus",
+        "scripting",
+        "activeTab",
+        "webNavigation"
+    ],
+    "icons": {
+        "128": "image.png"
+    },
+    "background": {
+        "service_worker": "background.js"
+    },
+    "content_scripts": [{
+        "matches": ["<all_urls>"],
+        "js": ["contentScript.js"],
+        "run_at": "document_end"
+    }]
 }

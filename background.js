@@ -1,24 +1,28 @@
-// background.js
+chrome.webNavigation.onHistoryStateUpdated.addListener((details) => {
+    console.log("URL changed via SPA:", details.url);
+    sendMessageToPanel(details.url);
 
-chrome.runtime.onInstalled.addListener(() => {
-  chrome.contextMenus.create({
-      id: "edit-code",
-      title: "Edit Code",
-      contexts: ["all"]
-  });
+}, {
+    url: [{
+        hostContains: "."
+    }]
 });
 
-chrome.contextMenus.onClicked.addListener((info, tab) => {
-  if (info.menuItemId === "edit-code") {
-      // Request file path from the content script
-      chrome.tabs.sendMessage(tab.id, { action: "getFilePath" }, (response) => {
-          if (response && response.filePath) {
-              // Send message to update the panel's iframe URL
-              chrome.runtime.sendMessage({
-                  action: 'updateFile',
-                  filePath: response.filePath
-              });
-          }
-      });
-  }
+chrome.webNavigation.onCommitted.addListener((details) => {
+    console.log("URL changed via full page load:", details.url);
+    sendMessageToPanel(details.url);
+
+}, {
+    url: [{
+        hostContains: "."
+    }]
 });
+
+
+
+function sendMessageToPanel(url) {
+    chrome.runtime.sendMessage({
+        action: "urlChanged",
+        newUrl: url
+    });
+}
